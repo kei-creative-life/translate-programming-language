@@ -1,4 +1,22 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.validate": [
+    "html",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "css.validate": false,
+  "scss.validate": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
+  // "typescript.tsdk": "node_modules/typescript/lib",
+  // "typescript.enablePromptUseWorkspaceTsdk": true
 }

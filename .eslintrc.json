@@ -1,7 +1,5 @@
 {
-  "extends": "next/core-web-vitals",
-  "plugin": "tailwindcss/recommended",
-  "ignorePatterns": [
-    "*.config.js"
-  ]
+  "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended"],
+  "plugin": ["prettier"],
+  "ignorePatterns": ["*.config.js"]
 }
