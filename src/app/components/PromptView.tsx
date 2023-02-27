@@ -28,7 +28,6 @@ export default function PromptView({
   return (
     <div className="sticky bottom-0 w-full flex-shrink bg-neutral-800 py-3 text-center">
       <textarea
-        style={{ height: '500px' }}
         ref={promptTextAreaRef}
         // placeholder={lang.promptPlaceholder}
         placeholder='input'
