@@ -1,12 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+import PromptResult from './components/PrompResult'
 import PromptView from './components/PromptView'
+import OrderButton from './components/OrderButton'
 import { getTranslatedCode } from './api/transResult'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -27,10 +25,14 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
-      <p>Result:</p>
-      <article dangerouslySetInnerHTML={{ __html: promptResponse }}></article>
-      <PromptView isLoading={isLoading} onSubmitClicked={onPromptSubmit} />
+    <main className='h-screen flex-grow'>
+      <div className='flex h-full flex-col'>
+        <OrderButton />
+        <div className='flex flex-grow'>
+          <PromptView isLoading={isLoading} onSubmitClicked={onPromptSubmit} />
+          <PromptResult promptResponse={promptResponse} />
+        </div>
+      </div>
     </main>
   )
 }

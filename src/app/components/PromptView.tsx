@@ -22,9 +22,8 @@ export default function PromptView({ isLoading, onSubmitClicked }: PromptViewPro
   }
 
   return (
-    <div className='sticky bottom-0 w-full flex-shrink bg-neutral-800 py-3 text-center'>
-      <textarea ref={promptTextAreaRef} placeholder='input' className='resize-vertical mr-3 -mb-2 w-3/4 rounded bg-neutral-700 p-2' />
-      <button
+    <div className='mx-4 w-1/2 py-3 text-center'>
+      {/* <button
         onClick={onSubmitButtonClicked}
         disabled={isLoading}
         className='mr-3 rounded bg-indigo-700 px-1.5 py-0.5 transition-colors duration-200 hover:bg-indigo-500 disabled:opacity-75'
@@ -37,7 +36,8 @@ export default function PromptView({ isLoading, onSubmitClicked }: PromptViewPro
         className='rounded bg-transparent px-1.5 py-0.5 transition-colors duration-200 hover:bg-gray-700 disabled:opacity-75'
       >
         Clear
-      </button>
+      </button> */}
+      <textarea ref={promptTextAreaRef} placeholder='input' className='resize-vertical mr-3 h-full w-full rounded bg-gray-700 p-2' />
     </div>
   )
 }
