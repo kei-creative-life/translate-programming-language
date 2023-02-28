@@ -7,6 +7,10 @@ import OrderButton from './components/OrderButton'
 import { getTranslatedCode } from './api/transResult'
 
 export default function Home() {
+  // Programming Language
+  const [beforeLang, setBeforeLang] = useState<string>('javascript')
+  const [afterLang, setAfterLang] = useState<string>('javascript')
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [promptResponse, setPromptResponse] = useState<string>('')
 
@@ -25,12 +29,12 @@ export default function Home() {
   }
 
   return (
-    <main className='h-screen flex-grow'>
-      <div className='flex h-full flex-col'>
-        <OrderButton />
+    <main className='flex-grow'>
+      <div className='flex flex-col' style={{ height: '900px' }}>
+        <OrderButton onSubmitClicked={onPromptSubmit} />
         <div className='flex flex-grow'>
-          <PromptView isLoading={isLoading} onSubmitClicked={onPromptSubmit} />
-          <PromptResult promptResponse={promptResponse} />
+          <PromptView isLoading={isLoading} onSubmitClicked={onPromptSubmit} beforeLang={beforeLang} afterLang={afterLang} setBeforeLang={setBeforeLang} />
+          <PromptResult promptResponse={promptResponse} setAfterLang={setAfterLang} />
         </div>
       </div>
     </main>
