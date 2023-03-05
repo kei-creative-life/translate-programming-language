@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className='flex min-h-screen flex-col'>
           <Header />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </body>
     </html>

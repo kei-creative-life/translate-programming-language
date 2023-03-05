@@ -11,7 +11,7 @@ export const getTranslatedCode = async (prompt: string) => {
     model: 'code-davinci-002',
     prompt: prompt,
     temperature: 0,
-    max_tokens: 100, // 最大文字数
+    max_tokens: 50, // 最大文字数
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
