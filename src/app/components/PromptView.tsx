@@ -42,7 +42,7 @@ export default function PromptView({ clearPrompt }: PromptViewProps) {
         padding={16}
         className='resize-vertical h-full w-full rounded'
         style={{
-          fontSize: 16,
+          fontSize: 20,
           backgroundColor: '#202A37',
           fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
         }}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import sanitize from 'sanitize-html'
 import { IconContext } from 'react-icons'
 import { RxClipboardCopy } from 'react-icons/rx'
 
@@ -11,9 +12,15 @@ export default function PromptResult({ promptResponse }: any) {
     setIsClick(true)
   }
 
+  const sanitizePromptResponse = () => {
+    return sanitize(promptResponse, {
+      nonTextTags: ['style', 'script', 'textarea', 'option', 'noscript'],
+    })
+  }
+
   return (
     <div className='mx-4 flex w-1/2 py-3 text-center'>
-      <div className='h-full w-full break-words rounded bg-gray-800 p-4 text-left' dangerouslySetInnerHTML={{ __html: promptResponse }} />
+      <div className='h-full w-full break-words rounded bg-gray-800 p-4 text-left' dangerouslySetInnerHTML={{ __html: sanitizePromptResponse() }} />
       <div className='bg-gray-800 p-4'>
         <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
           <button onClick={copyToClipboard} onAnimationEnd={() => setIsClick(false)}>

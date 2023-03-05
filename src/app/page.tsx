@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <main className='flex-grow'>
-      <div className='flex flex-col' style={{ height: '900px' }}>
+      <div className='flex flex-col' style={{ minHeight: '500px' }}>
         <Overlay isLoading={isLoading} />
         <LangContext.Provider value={{ beforeLang, updateBeforeLang, afterLang, updateAfterLang }}>
           <SelectLangsWrapper />
