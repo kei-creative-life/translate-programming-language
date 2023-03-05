@@ -28,7 +28,7 @@ export default function PromptView({ isLoading }: any) {
     <div className='mx-4 w-1/2 py-3 text-center'>
       <textarea
         ref={promptTextAreaRef}
-        placeholder='input'
+        placeholder='const test = "This is test code."'
         className='resize-vertical mr-3 h-full w-full rounded bg-gray-800 p-2'
         onChange={() => updatePromptValue()}
       />
