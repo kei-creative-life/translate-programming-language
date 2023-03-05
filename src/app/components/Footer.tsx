@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className='sticky bottom-0 bg-gray-900'>
       <div className='mx-auto max-w-7xl overflow-hidden py-2 px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-center space-x-6'>
-          <a className='text-gray-400 hover:text-gray-500' href='https://github.com/KushibikiMashu' target='_top' rel='noopener nofollow noreferrer'>
+          <a className='text-gray-400 hover:text-gray-500' href='https://github.com/kei-creative-life' target='_top' rel='noopener nofollow noreferrer'>
             <span className='sr-only'>GitHub</span>
             <svg fill='currentColor' viewBox='0 0 24 24' className='h-6 w-6' aria-hidden='true'>
               <path
@@ -14,7 +14,10 @@ export default function Footer() {
             </svg>
           </a>
         </div>
-        <p className='mt-4 text-center text-base text-gray-300'>© 2023 KKK Program. All rights reserved.</p>
+        <p className='mt-4 text-center text-base text-gray-300'>
+          © 2023 Kengo Yamamoto Program.
+          <br /> All rights reserved.
+        </p>
       </div>
     </footer>
   )
