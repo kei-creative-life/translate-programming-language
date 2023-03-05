@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { LangContext } from '../contexts'
+import { LangContext } from '../../contexts'
 
 type SelectType = 'before' | 'after'
 

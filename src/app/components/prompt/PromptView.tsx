@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import '@uiw/react-textarea-code-editor/dist.css'
-import { LangContext, PromptContext } from '../contexts'
+import { LangContext, PromptContext } from '../../contexts'
 import { IconContext } from 'react-icons'
 import { CgClose } from 'react-icons/cg'
 

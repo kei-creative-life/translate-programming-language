@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import PromptResult from './components/PrompResult'
+import PromptResult from './components/prompt/PrompResult'
 import { getTranslatedCode } from './api/transResult'
-import PromptView from './components/PromptView'
+import PromptView from './components/prompt/PromptView'
 import OrderButton from './components/OrderButton'
-import SelectLangsWrapper from './components/SelectLangWrapper'
+import SelectLangsWrapper from './components/language/SelectLangWrapper'
 
 import { LangContext, PromptContext } from './contexts'
 import Overlay from './components/Overlay'
