@@ -13,6 +13,13 @@ export default function SelectLang(props: any) {
     if (selectType === 'after') updateAfterLang(e)
   }
 
+  const languages = ['JavaScript', 'TypeScript', 'Ruby', 'PHP', 'Python', 'Haskwell', 'Java']
+  const languageList = languages.map((language) => (
+    <option key={language} value={language}>
+      {language}
+    </option>
+  ))
+
   return (
     <>
       <label htmlFor='default' className='mb-2 block text-left text-sm font-medium text-gray-900 dark:text-white'></label>
@@ -24,13 +31,7 @@ export default function SelectLang(props: any) {
         }
       >
         <option>Choose a Language</option>
-        <option value='JavaScript'>JavaScript</option>
-        <option value='TypeScript'>Typescript</option>
-        <option value='Ruby'>Ruby</option>
-        <option value='PHP'>PHP</option>
-        <option value='Python'>Python</option>
-        <option value='Haskwell'>Haskwell</option>
-        <option value='Java'>Java</option>
+        {languageList}
       </select>
     </>
   )

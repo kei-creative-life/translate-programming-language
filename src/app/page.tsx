@@ -8,6 +8,7 @@ import OrderButton from './components/OrderButton'
 import SelectLangsWrapper from './components/SelectLangWrapper'
 
 import { LangContext, PromptContext } from './contexts'
+import Overlay from './components/Overlay'
 
 export default function Home() {
   // Programming Language
@@ -20,7 +21,6 @@ export default function Home() {
 
   // Loading
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  console.log(isLoading)
 
   const updateBeforeLang = (e: any): void => {
     const beforeValue = e.target.value
@@ -36,13 +36,19 @@ export default function Home() {
     setPrompt(prompt)
   }
 
+  const clearPrompt = (): void => {
+    setPrompt('')
+  }
+
   const onPromptSubmit = async () => {
+    const instruction = `##### Translate this code from ${beforeLang} into ${afterLang} \n### ${beforeLang}\n`
+    const secondInstruction = `\n### ${afterLang}`
     // Loading...
     setIsLoading(true)
 
     // Response...
     try {
-      const response = await getTranslatedCode(prompt)
+      const response = await getTranslatedCode(`${instruction}${prompt}${secondInstruction}`)
       setPromptResponse(response ?? '')
       setIsLoading(false)
     } catch (err) {
@@ -53,12 +59,13 @@ export default function Home() {
   return (
     <main className='flex-grow'>
       <div className='flex flex-col' style={{ height: '900px' }}>
+        <Overlay isLoading={isLoading} />
         <LangContext.Provider value={{ beforeLang, updateBeforeLang, afterLang, updateAfterLang }}>
           <SelectLangsWrapper />
           <PromptContext.Provider value={{ prompt, updatePrompt }}>
             <OrderButton onSubmitClicked={onPromptSubmit} isLoading={isLoading} />
             <div className='flex flex-grow'>
-              <PromptView isLoading={isLoading} />
+              <PromptView clearPrompt={clearPrompt} />
               <PromptResult promptResponse={promptResponse} />
             </div>
           </PromptContext.Provider>

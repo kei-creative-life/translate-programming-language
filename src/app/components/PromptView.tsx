@@ -1,32 +1,36 @@
 import { useRef, useContext } from 'react'
-import { PromptContext, LangContext } from '../contexts'
+import { PromptContext } from '../contexts'
+import { IconContext } from 'react-icons'
+import { CgClose } from 'react-icons/cg'
 
-// interface PromptViewProps {
-//   isLoading: boolean
-//   onSubmitClicked: (prompt: string) => Promise<void>
-//   setBeforeLang: React.Dispatch<React.SetStateAction<string>>
-// }
+interface PromptViewProps {
+  clearPrompt: () => void
+}
 
-export default function PromptView({ isLoading }: any) {
-  const langContextValue = useContext(LangContext)
-  const { beforeLang, afterLang } = langContextValue
-
+export default function PromptView({ clearPrompt }: PromptViewProps) {
   const promptContextValue = useContext(PromptContext)
-  const { updatePrompt } = promptContextValue
+  const { prompt, updatePrompt } = promptContextValue
 
   const promptTextAreaRef = useRef<HTMLTextAreaElement>(null)
 
   const updatePromptValue = () => {
-    const instruction = `##### Translate this code from ${beforeLang} into ${afterLang} \n### ${beforeLang}\n`
-    const prompt = `${instruction} ${promptTextAreaRef.current?.value}    \n### ${afterLang}`
+    const prompt = `${promptTextAreaRef.current?.value}`
     if (!prompt) return alert('Please enter a prompt')
 
     updatePrompt(prompt)
   }
 
   return (
-    <div className='mx-4 w-1/2 py-3 text-center'>
+    <div className='relative mx-4 w-1/2 py-3 text-center'>
+      <div className='absolute top-6 right-4'>
+        <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
+          <button onClick={clearPrompt}>
+            <CgClose />
+          </button>
+        </IconContext.Provider>
+      </div>
       <textarea
+        value={prompt}
         ref={promptTextAreaRef}
         placeholder='const test = "This is test code."'
         className='resize-vertical mr-3 h-full w-full rounded bg-gray-800 p-2'
