@@ -12,8 +12,9 @@ export default function PromptResult({ promptResponse }: any) {
   }
 
   return (
-    <div className='relative mx-4 w-1/2 py-3 text-center'>
-      <div className='absolute top-6 right-4'>
+    <div className='mx-4 flex w-1/2 py-3 text-center'>
+      <div className='h-full w-full break-words rounded bg-gray-800 p-4 text-left' dangerouslySetInnerHTML={{ __html: promptResponse }} />
+      <div className='bg-gray-800 p-4'>
         <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
           <button onClick={copyToClipboard} onAnimationEnd={() => setIsClick(false)}>
             <RxClipboardCopy className={`${isClick && 'animate-scale-up-center'}`} />
@@ -21,7 +22,6 @@ export default function PromptResult({ promptResponse }: any) {
           </button>
         </IconContext.Provider>
       </div>
-      <div className='mr-3 h-full w-full break-words rounded bg-gray-800 p-2 text-left' dangerouslySetInnerHTML={{ __html: promptResponse }} />
     </div>
   )
 }
