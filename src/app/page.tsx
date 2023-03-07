@@ -5,6 +5,7 @@ import PromptResult from './components/prompt/PrompResult'
 import { getTranslatedCode } from './api/transResult'
 import PromptView from './components/prompt/PromptView'
 import OrderButton from './components/OrderButton'
+import { BiRightArrow } from 'react-icons/bi'
 import SelectLangsWrapper from './components/language/SelectLangWrapper'
 
 import { LangContext, PromptContext } from './contexts'
@@ -18,9 +19,12 @@ export default function Home() {
   // Prompt
   const [prompt, setPrompt] = useState<string>('')
   const [promptResponse, setPromptResponse] = useState<string>('')
+  const [isGetResponse, setIsGetResponse] = useState<boolean>(false)
 
   // Loading
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const [isProptVisible, setIsProptVisible] = useState<boolean>(true)
 
   const updateBeforeLang = (e: any): void => {
     const beforeValue = e.target.value
@@ -51,22 +55,48 @@ export default function Home() {
       const response = await getTranslatedCode(`${instruction}${prompt}${secondInstruction}`)
       setPromptResponse(response ?? '')
       setIsLoading(false)
+      setIsGetResponse(true)
     } catch (err) {
       setIsLoading(false)
     }
   }
 
+  const updateIsProptVisible = (flag: boolean): void => {
+    if (isProptVisible === flag) return
+    setIsProptVisible(flag)
+  }
+
   return (
-    <main className='flex-grow'>
-      <div className='flex flex-col' style={{ minHeight: '500px' }}>
+    <main className='flex-grow bg-gray-800 px-9'>
+      <div className='flex flex-col' style={{ minHeight: '700px' }}>
         <Overlay isLoading={isLoading} />
         <LangContext.Provider value={{ beforeLang, updateBeforeLang, afterLang, updateAfterLang }}>
           <SelectLangsWrapper />
           <PromptContext.Provider value={{ prompt, updatePrompt }}>
-            <OrderButton onSubmitClicked={onPromptSubmit} isLoading={isLoading} />
-            <div className='flex flex-grow'>
-              <PromptView clearPrompt={clearPrompt} />
-              <PromptResult promptResponse={promptResponse} />
+            {/* <OrderButton onSubmitClicked={onPromptSubmit} isLoading={isLoading} /> */}
+            <div className='m-4 flex flex-grow'>
+              <div className='w-full'>
+                <ul className='list-reset flex rounded-3xl'>
+                  <li className='-mb-px mr-1'>
+                    <button
+                      onClick={() => updateIsProptVisible(true)}
+                      className={`${isProptVisible && 'border-gray-700 bg-gray-700'} font-semi-bold inline-block rounded-t rounded-t py-2 px-4 text-lg`}
+                    >
+                      Before Code
+                    </button>
+                  </li>
+                  <li className='mr-1'>
+                    <button
+                      onClick={() => updateIsProptVisible(false)}
+                      className={`${!isProptVisible && 'border border-gray-700 bg-gray-700'} inline-block rounded-t border-gray-700 py-2 px-4 text-lg`}
+                    >
+                      After Code
+                    </button>
+                  </li>
+                </ul>
+                {isProptVisible && <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />}
+                {!isProptVisible && <PromptResult promptResponse={promptResponse} />}
+              </div>
             </div>
           </PromptContext.Provider>
         </LangContext.Provider>

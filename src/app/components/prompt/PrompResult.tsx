@@ -19,15 +19,18 @@ export default function PromptResult({ promptResponse }: any) {
   }
 
   return (
-    <div className='mx-4 flex w-1/2 py-3 text-center'>
-      <div className='h-full w-full break-words rounded bg-gray-800 p-4 text-left' dangerouslySetInnerHTML={{ __html: sanitizePromptResponse() }} />
-      <div className='bg-gray-800 p-4'>
-        <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
-          <button onClick={copyToClipboard} onAnimationEnd={() => setIsClick(false)}>
-            <RxClipboardCopy className={`${isClick && 'animate-scale-up-center'}`} />
-            <span>Copy</span>
-          </button>
-        </IconContext.Provider>
+    <div className='h-full flex-col'>
+      <div className='flex h-full rounded-lg bg-gray-700 py-3 text-center '>
+        {/* <div className='h-full w-full break-words p-4 text-left'>No Result...</div> */}
+        <div className='h-full w-full break-words p-4 text-left' dangerouslySetInnerHTML={{ __html: promptResponse }} />
+        {/* <div className='px-4 pt-2'>
+          <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
+            <button onClick={copyToClipboard} onAnimationEnd={() => setIsClick(false)}>
+              <RxClipboardCopy className={`${isClick && 'animate-scale-up-center'}`} />
+              <span>Copy</span>
+            </button>
+          </IconContext.Provider>
+        </div> */}
       </div>
     </div>
   )
