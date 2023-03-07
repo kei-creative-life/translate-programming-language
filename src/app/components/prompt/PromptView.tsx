@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import '@uiw/react-textarea-code-editor/dist.css'
 import { LangContext, PromptContext } from '../../contexts'
 import { IconContext } from 'react-icons'
-import { TbTransformFilled } from 'react-icons/tb'
+import { BsTranslate } from 'react-icons/bs'
 
 interface PromptViewProps {
   clearPrompt: () => void
@@ -48,6 +48,18 @@ export default function PromptView(props: PromptViewProps) {
   return (
     <div className='flex- mb-4 h-full flex-col'>
       <div className='flex h-full rounded-b-lg bg-gray-700 py-3 text-center'>
+        <ul className='border-r py-4 text-lg'>
+          <li className='mx-2'>1</li>
+          <li className='mx-2'>2</li>
+          <li className='mx-2'>3</li>
+          <li className='mx-2'>4</li>
+          <li className='mx-2'>5</li>
+          <li className='mx-2'>6</li>
+          <li className='mx-2'>7</li>
+          <li className='mx-2'>8</li>
+          <li className='mx-2'>9</li>
+          <li className='mx-2'>10</li>
+        </ul>
         <CodeEditor
           value={prompt}
           language={lowerPrompt}
@@ -62,11 +74,14 @@ export default function PromptView(props: PromptViewProps) {
         />
         <div className='px-4 pt-2'>
           <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
-            <button onClick={onSubmitClicked} disabled={isDisabled} className='cursor-pointer rounded-full border border-gray-800 bg-gray-800 p-2'>
-              <TbTransformFilled />
+            <button
+              onClick={onSubmitClicked}
+              disabled={isDisabled}
+              className={`${isDisabled && 'cursor-not-allowed'} cursor-pointer rounded-full border border-gray-800 bg-gray-800 p-2`}
+            >
+              <BsTranslate />
             </button>
           </IconContext.Provider>
-          <p className='my-2 font-bold'>Translate</p>
         </div>
       </div>
     </div>

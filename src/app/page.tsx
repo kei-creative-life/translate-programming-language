@@ -6,6 +6,7 @@ import { getTranslatedCode } from './api/transResult'
 import PromptView from './components/prompt/PromptView'
 import OrderButton from './components/OrderButton'
 import { BiRightArrow } from 'react-icons/bi'
+import { BsTranslate } from 'react-icons/bs'
 import SelectLangsWrapper from './components/language/SelectLangWrapper'
 
 import { LangContext, PromptContext } from './contexts'
@@ -71,6 +72,28 @@ export default function Home() {
       <div className='flex flex-col' style={{ minHeight: '700px' }}>
         <Overlay isLoading={isLoading} />
         <LangContext.Provider value={{ beforeLang, updateBeforeLang, afterLang, updateAfterLang }}>
+          <div className='m-6 w-full'>
+            <p className='text-2xl'>You can translate from one programming language to another target languages on this web site.</p>
+            <ul className='m-4 text-lg'>
+              <li className='mb-2'>1. Select "Translate from" programming language.</li>
+              <li className='mb-2'>2. Select "Translate into" programming language.</li>
+              <li className='mb-2'>
+                <span>3. Write programming language.</span>
+              </li>
+              <li className='mb-2 flex content-center'>
+                <span className='mr-2'>4.Press </span>
+                <span className='mr-2'>
+                  <p className='cursor-pointer rounded-full border border-gray-700 bg-gray-700 p-2'>
+                    <BsTranslate />
+                  </p>
+                </span>
+                <span>button.</span>
+              </li>
+              <li className='mb-2'>
+                <span>5. Press "After Code" tab. You can get translated programming language !!!</span>
+              </li>
+            </ul>
+          </div>
           <SelectLangsWrapper />
           <PromptContext.Provider value={{ prompt, updatePrompt }}>
             {/* <OrderButton onSubmitClicked={onPromptSubmit} isLoading={isLoading} /> */}
@@ -88,7 +111,9 @@ export default function Home() {
                   <li className='mr-1'>
                     <button
                       onClick={() => updateIsProptVisible(false)}
-                      className={`${!isProptVisible && 'border border-gray-700 bg-gray-700'} inline-block rounded-t border-gray-700 py-2 px-4 text-lg`}
+                      className={`${
+                        !isProptVisible && 'border border-gray-700 bg-gray-700'
+                      } inline-block cursor-not-allowed rounded-t border-gray-700 py-2 px-4 text-lg`}
                     >
                       After Code
                     </button>
