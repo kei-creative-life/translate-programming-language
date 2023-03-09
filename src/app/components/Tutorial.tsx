@@ -20,7 +20,7 @@ export default function Tutorial(props: TutorialProps) {
   ]
 
   const tutorialText = tutorialTexts.map((text, index) => (
-    <li className='mb-2' key={index}>
+    <li className='mb-4' key={index}>
       <div className='flex items-center'>
         <div className='mr-2 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-900 md:h-6 md:w-6'>
           <div
@@ -76,8 +76,8 @@ export default function Tutorial(props: TutorialProps) {
   ))
 
   return (
-    <div className='m-6 md:w-full'>
-      <p className='md:text-xl lg:text-2xl'>{tutorialTitle}</p>
+    <div className='m-4 md:m-6 md:w-full'>
+      <p className='mb-4 rounded bg-gray-900 p-4 md:text-xl lg:text-2xl'>{tutorialTitle}</p>
       <ul className='text-md my-4 md:m-4 md:text-lg'>{tutorialText}</ul>
     </div>
   )

@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body>
-        <div className='flex h-screen flex-col'>
+        <div className='md:flex md:h-screen md:flex-col'>
           <Header />
           {children}
           <Footer />

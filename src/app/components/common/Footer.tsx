@@ -14,7 +14,7 @@ export default function Footer() {
             </svg> */}
           </a>
         </div>
-        <p className='mt-2 text-center text-base text-gray-300'>© 2023 Kengo Yamamoto</p>
+        <p className='mt-2 text-center text-sm text-gray-300 md:text-base'>© 2023 Kengo Yamamoto</p>
       </div>
     </footer>
   )
