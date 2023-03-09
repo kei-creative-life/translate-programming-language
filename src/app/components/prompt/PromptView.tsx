@@ -20,6 +20,7 @@ export default function PromptView(props: PromptViewProps) {
   const { prompt, updatePrompt } = promptContextValue
   const [lowerPrompt, setLowerPrompt] = useState('')
   const [isDisabled, setIsDisabled] = useState(true)
+  const [isMountedPrompt, setIsMountedPrompt] = useState(true)
 
   const updatePromptValue = (prompt: string) => {
     updatePrompt(prompt)
@@ -60,23 +61,26 @@ export default function PromptView(props: PromptViewProps) {
           <li className='mx-2'>9</li>
           <li className='mx-2'>10</li>
         </ul>
-        <CodeEditor
-          value={prompt}
-          language={lowerPrompt}
-          placeholder={`Please enter ${beforeLang} code.`}
-          onChange={(event) => updatePromptValue(event.target.value)}
-          padding={16}
-          className='resize-vertical h-full w-full rounded'
-          style={{
-            fontSize: 18,
-            fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-          }}
-        />
+        <div className='w-full'>
+          <CodeEditor
+            value={prompt}
+            language={lowerPrompt}
+            placeholder={`Please enter ${beforeLang} code.`}
+            onChange={(event) => updatePromptValue(event.target.value)}
+            padding={16}
+            className='resize-vertical h-full w-full rounded'
+            style={{
+              fontSize: 18,
+              fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+            }}
+          />
+        </div>
         <div className='px-4 pt-2'>
           <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
             <button
               onClick={onSubmitClicked}
-              disabled={isDisabled}
+              // disabled={isDisabled}
+              disabled
               className={`${isDisabled && 'cursor-not-allowed'} cursor-pointer rounded-full border border-gray-800 bg-gray-800 p-2`}
             >
               <BsTranslate />

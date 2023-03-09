@@ -13,8 +13,11 @@ export default function Overlay({ isLoading }: IsLoadingProps) {
         <div className='mx-4 h-2 w-2 animate-ping rounded-full bg-white'></div>
         <div className='h-2 w-2 animate-ping rounded-full bg-white'></div>
       </div>
-      <h2 className='text-center text-xl font-semibold text-white'>Translating Your Code...</h2>
-      <p className='w-1/3 text-center text-white'>This may take a few seconds, please don't close this page.</p>
+      <h2 className='mb-5 text-center text-xl font-semibold text-white'>Translating Your Code...</h2>
+      <p className='w-1/3 text-center text-white'>
+        This may take a few seconds,
+        <br /> please don't close this page.
+      </p>
     </div>
   )
 }

@@ -4,13 +4,11 @@ import { useState } from 'react'
 import PromptResult from './components/prompt/PrompResult'
 import { getTranslatedCode } from './api/transResult'
 import PromptView from './components/prompt/PromptView'
-import OrderButton from './components/OrderButton'
-import { BiRightArrow } from 'react-icons/bi'
-import { BsTranslate } from 'react-icons/bs'
 import SelectLangsWrapper from './components/language/SelectLangWrapper'
 
 import { LangContext, PromptContext } from './contexts'
 import Overlay from './components/Overlay'
+import Tutorial from './components/Tutorial'
 
 export default function Home() {
   // Programming Language
@@ -21,11 +19,12 @@ export default function Home() {
   const [prompt, setPrompt] = useState<string>('')
   const [promptResponse, setPromptResponse] = useState<string>('')
   const [isGetResponse, setIsGetResponse] = useState<boolean>(false)
+  const [isStartTranslate, setIsStartTranslate] = useState<boolean>(false)
 
   // Loading
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const [isProptVisible, setIsProptVisible] = useState<boolean>(true)
+  const [isPromptVisible, setIsPromptVisible] = useState<boolean>(true)
 
   const updateBeforeLang = (e: any): void => {
     const beforeValue = e.target.value
@@ -50,6 +49,7 @@ export default function Home() {
     const secondInstruction = `\n### ${afterLang}`
     // Loading...
     setIsLoading(true)
+    setIsStartTranslate(true)
 
     // Response...
     try {
@@ -59,51 +59,31 @@ export default function Home() {
       setIsGetResponse(true)
     } catch (err) {
       setIsLoading(false)
+    } finally {
+      setIsStartTranslate(false)
     }
   }
 
   const updateIsProptVisible = (flag: boolean): void => {
-    if (isProptVisible === flag) return
-    setIsProptVisible(flag)
+    if (isPromptVisible === flag) return
+    setIsPromptVisible(flag)
   }
 
   return (
-    <main className='flex-grow bg-gray-800 px-9'>
+    <main className='flex-grow bg-gray-800 md:px-9'>
       <div className='flex flex-col' style={{ minHeight: '700px' }}>
         <Overlay isLoading={isLoading} />
         <LangContext.Provider value={{ beforeLang, updateBeforeLang, afterLang, updateAfterLang }}>
-          <div className='m-6 w-full'>
-            <p className='text-2xl'>You can translate from one programming language to another target languages on this web site.</p>
-            <ul className='m-4 text-lg'>
-              <li className='mb-2'>1. Select "Translate from" programming language.</li>
-              <li className='mb-2'>2. Select "Translate into" programming language.</li>
-              <li className='mb-2'>
-                <span>3. Write programming language.</span>
-              </li>
-              <li className='mb-2 flex content-center'>
-                <span className='mr-2'>4.Press </span>
-                <span className='mr-2'>
-                  <p className='cursor-pointer rounded-full border border-gray-700 bg-gray-700 p-2'>
-                    <BsTranslate />
-                  </p>
-                </span>
-                <span>button.</span>
-              </li>
-              <li className='mb-2'>
-                <span>5. Press "After Code" tab. You can get translated programming language !!!</span>
-              </li>
-            </ul>
-          </div>
+          <Tutorial prompt={prompt} isStartTranslate={isStartTranslate} />
           <SelectLangsWrapper />
           <PromptContext.Provider value={{ prompt, updatePrompt }}>
-            {/* <OrderButton onSubmitClicked={onPromptSubmit} isLoading={isLoading} /> */}
             <div className='m-4 flex flex-grow'>
               <div className='w-full'>
                 <ul className='list-reset flex rounded-3xl'>
                   <li className='-mb-px mr-1'>
                     <button
                       onClick={() => updateIsProptVisible(true)}
-                      className={`${isProptVisible && 'border-gray-700 bg-gray-700'} font-semi-bold inline-block rounded-t rounded-t py-2 px-4 text-lg`}
+                      className={`${isPromptVisible && 'border-gray-700 bg-gray-700'} font-semi-bold inline-block rounded-t rounded-t py-2 px-4 text-lg`}
                     >
                       Before Code
                     </button>
@@ -111,16 +91,16 @@ export default function Home() {
                   <li className='mr-1'>
                     <button
                       onClick={() => updateIsProptVisible(false)}
-                      className={`${
-                        !isProptVisible && 'border border-gray-700 bg-gray-700'
-                      } inline-block cursor-not-allowed rounded-t border-gray-700 py-2 px-4 text-lg`}
+                      className={`${!isPromptVisible && 'border border-gray-700 bg-gray-700'} ${
+                        promptResponse.length === 0 && 'invisible'
+                      } inline-block rounded-t border-gray-700 py-2 px-4 text-lg`}
                     >
                       After Code
                     </button>
                   </li>
                 </ul>
-                {isProptVisible && <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />}
-                {!isProptVisible && <PromptResult promptResponse={promptResponse} />}
+                {isPromptVisible && <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />}
+                {!isPromptVisible && <PromptResult promptResponse={promptResponse} />}
               </div>
             </div>
           </PromptContext.Provider>
