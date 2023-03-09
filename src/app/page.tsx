@@ -83,7 +83,9 @@ export default function Home() {
                   <li className='-mb-px mr-1'>
                     <button
                       onClick={() => updateIsProptVisible(true)}
-                      className={`${isPromptVisible && 'border-gray-700 bg-gray-700'} font-semi-bold inline-block rounded-t rounded-t py-2 px-4 text-lg`}
+                      className={`${
+                        isPromptVisible && 'border-gray-700 bg-gray-700'
+                      } font-semi-bold inline-block rounded-t rounded-t py-2 px-4 text-sm md:text-lg`}
                     >
                       Before Code
                     </button>
@@ -93,7 +95,7 @@ export default function Home() {
                       onClick={() => updateIsProptVisible(false)}
                       className={`${!isPromptVisible && 'border border-gray-700 bg-gray-700'} ${
                         promptResponse.length === 0 && 'invisible'
-                      } inline-block rounded-t border-gray-700 py-2 px-4 text-lg`}
+                      } inline-block rounded-t border-gray-700 py-2 px-4 text-sm md:text-lg`}
                     >
                       After Code
                     </button>

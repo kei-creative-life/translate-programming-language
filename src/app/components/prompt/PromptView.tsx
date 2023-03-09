@@ -49,7 +49,7 @@ export default function PromptView(props: PromptViewProps) {
   return (
     <div className='flex- mb-4 h-full flex-col'>
       <div className='flex h-full rounded-b-lg bg-gray-700 py-3 text-center'>
-        <ul className='border-r py-4 text-lg'>
+        <ul className='border-r py-4 text-sm md:text-lg'>
           <li className='mx-2'>1</li>
           <li className='mx-2'>2</li>
           <li className='mx-2'>3</li>
@@ -68,9 +68,8 @@ export default function PromptView(props: PromptViewProps) {
             placeholder={`Please enter ${beforeLang} code.`}
             onChange={(event) => updatePromptValue(event.target.value)}
             padding={16}
-            className='resize-vertical h-full w-full rounded'
+            className='resize-vertical h-full w-full rounded text-sm md:text-lg'
             style={{
-              fontSize: 18,
               fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
             }}
           />
