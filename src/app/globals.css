@@ -67,15 +67,6 @@ a {
   text-decoration: none;
 }
 
-/* textarea::-webkit-scrollbar {
-  width: 12px;
-}
-
-textarea::-webkit-scrollbar-thumb {
-  background: #eaeaea;
-  border-radius: 12px;
-} */
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
