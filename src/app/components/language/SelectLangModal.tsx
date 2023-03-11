@@ -6,17 +6,17 @@ export default function SelectLangsWrapper() {
   const { updateLangType } = langContextValue
 
   const languages = [
-    { label: 'JavaScript to TypeScript' },
-    { label: 'JavaScript to Ruby' },
-    { label: 'JavaScript to Python' },
-    { label: 'JavaScript to PHP' },
-    { label: 'Ruby to PHP' },
-    { label: 'Ruby to Python' },
+    { label: 'JavaScript to\n TypeScript' },
+    { label: 'JavaScript to\n Ruby' },
+    { label: 'JavaScript to\n Python' },
+    { label: 'JavaScript to\n PHP' },
+    { label: 'Ruby to\n PHP' },
+    { label: 'Ruby to\n Python' },
     { label: 'Ruby to JavaScript' },
     { label: 'Python to Ruby' },
     { label: 'Python to PHP' },
     { label: 'Python to JavaScript' },
-    { label: 'PHP to Ruby' },
+    { label: 'PHP to\n Ruby' },
     { label: 'PHP to Python' },
     { label: 'PHP to JavaScript' },
   ]
@@ -48,10 +48,10 @@ export default function SelectLangsWrapper() {
       />
       <label
         htmlFor={`${language.label}_${index}`}
-        className='inline-flex w-full cursor-pointer items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-5 text-gray-500 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-gray-600 hover:bg-gray-50 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:peer-checked:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300'
+        className='inline-flex w-full cursor-pointer items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-gray-600 hover:bg-gray-50 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:peer-checked:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300 md:p-5'
       >
         <div className='block'>
-          <div className='w-full text-base font-semibold'>{language.label}</div>
+          <div className='w-full text-sm font-semibold md:text-base'>{language.label}</div>
         </div>
       </label>
     </li>

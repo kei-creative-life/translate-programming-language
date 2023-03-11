@@ -20,7 +20,7 @@ export default function OperationWrapper(props: any) {
         <IconContext.Provider value={{ color: 'white', size: '16px' }}>
           <button
             onClick={onSubmitClicked}
-            disabled={prompt.length > 0 || langType}
+            disabled={prompt.length === 0 || !langType}
             className={`${
               (prompt.length === 0 || !langType) && 'cursor-not-allowed'
             } flex w-full cursor-pointer items-center justify-center rounded-lg border border-blue-800 bg-blue-800 py-2 hover:bg-blue-600`}
