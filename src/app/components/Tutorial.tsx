@@ -11,11 +11,11 @@ export default function Tutorial(props: TutorialProps) {
   const { prompt, isStartTranslate } = props
   const { beforeLang, afterLang } = useContext(LangContext)
 
-  const tutorialTitle = 'You can translate from one programming language to another target languages on this web site.'
+  const tutorialTitle = 'What is "Cheat Programming?"'
   const tutorialTexts = [
     'Select detected programming language on "Translate from" form below.',
     'Select programming language on "Translate into" below.',
-    'Write programming language on "Before code" below..',
+    'Write programming language on "Before code" below.',
     'Press',
   ]
 
@@ -24,10 +24,14 @@ export default function Tutorial(props: TutorialProps) {
       <div className='flex items-center'>
         <div className='mr-2 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-900 md:h-6 md:w-6'>
           <div
-            style={{
-              display: (index === 0 && beforeLang) || (index === 1 && afterLang) || (index === 2 && prompt) || (index === 3 && isStartTranslate) ? '' : 'none',
-            }}
-            className='w-60'
+            className={`${
+              !(
+                (index === 0 && beforeLang && beforeLang !== 'Choose a Language') ||
+                (index === 1 && afterLang && afterLang !== 'Choose a Language') ||
+                (index === 2 && prompt) ||
+                (index === 3 && isStartTranslate)
+              ) && 'hidden'
+            }`}
           >
             <svg aria-hidden='true' className='h-4 w-4' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <path
@@ -38,9 +42,13 @@ export default function Tutorial(props: TutorialProps) {
             </svg>
           </div>
           <div
-            style={{
-              display: (index === 0 && beforeLang) || (index === 1 && afterLang) || (index === 2 && prompt) || (index === 3 && isStartTranslate) ? 'none' : '',
-            }}
+            className={`${
+              ((index === 0 && beforeLang && beforeLang !== 'Choose a Language') ||
+                (index === 1 && afterLang && afterLang !== 'Choose a Language') ||
+                (index === 2 && prompt) ||
+                (index === 3 && isStartTranslate)) &&
+              'hidden'
+            }`}
           >
             <svg aria-hidden='true' className='h-4 w-4' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <path
@@ -53,18 +61,17 @@ export default function Tutorial(props: TutorialProps) {
         </div>
         <div
           className={`${
-            ((index === 0 && beforeLang) || (index === 1 && afterLang) || (index === 2 && prompt) || (index === 3 && isStartTranslate)) && 'text-blue-600'
+            ((index === 0 && beforeLang && beforeLang !== 'Choose a Language') ||
+              (index === 1 && afterLang && afterLang !== 'Choose a Language') ||
+              (index === 2 && prompt) ||
+              (index === 3 && isStartTranslate)) &&
+            'text-blue-600'
           } flex content-center`}
         >
           <span>
             Step {index + 1}. {text}
           </span>
-          <div
-            style={{
-              display: index !== 3 ? 'none' : '',
-            }}
-            className='flex content-center'
-          >
+          <div className={`${index === 3 || 'hidden'} flex content-center`}>
             <span className='mx-2'>
               <BsTranslate />
             </span>
@@ -76,9 +83,12 @@ export default function Tutorial(props: TutorialProps) {
   ))
 
   return (
-    <div className='m-4 md:m-6 md:w-full'>
-      <p className='mb-4 rounded bg-gray-900 p-4 md:text-xl lg:text-2xl'>{tutorialTitle}</p>
-      <ul className='text-md my-4 md:m-4 md:text-lg'>{tutorialText}</ul>
+    <div className='m-4 md:m-6'>
+      <p className='mb-4 rounded p-4 text-center font-bold md:text-xl lg:text-2xl'>{tutorialTitle}</p>
+      <p className=':text-xl mb:mb-12 mx-auto mb-6 w-3/4'>
+        Paste or write your programming code below, and you’ll get translated programming code what you want within seconds using Chat GPT.
+      </p>
+      {/* <ul className='text-md my-4 md:m-4 md:text-lg'>{tutorialText}</ul> */}
     </div>
   )
 }
