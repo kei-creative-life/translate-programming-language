@@ -22,7 +22,12 @@ export default function PromptResult({ promptResponse }: any) {
     <div className='h-full flex-col'>
       <div className='flex h-full rounded-lg bg-gray-700 py-3 text-center '>
         {/* <div className='h-full w-full break-words p-4 text-left'>No Result...</div> */}
-        <div className='h-full w-full break-words p-4 text-left' dangerouslySetInnerHTML={{ __html: promptResponse }} />
+        {/* <textarea className='h-full w-full break-words p-4 text-left' value={promptResponse} /> */}
+        <div
+          className='h-full w-full overflow-scroll break-words p-4 text-left'
+          style={{ height: '500px' }}
+          dangerouslySetInnerHTML={{ __html: promptResponse }}
+        />
         {/* <div className='px-4 pt-2'>
           <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
             <button onClick={copyToClipboard} onAnimationEnd={() => setIsClick(false)}>

@@ -84,11 +84,11 @@ export default function Home() {
 
   return (
     <main className='flex-grow bg-gray-800 md:px-9'>
-      <div className='flex flex-col' style={{ minHeight: '700px' }}>
+      <div className='flex flex-col'>
         <Overlay isLoading={isLoading} setIsLoading={setIsLoading} promptError={promptError} />
         <LangContext.Provider value={{ beforeLang, updateBeforeLang, afterLang, updateAfterLang }}>
           <Tutorial prompt={prompt} isStartTranslate={isStartTranslate} />
-          <div className='flex flex-col md:flex-row'>
+          <div className='flex flex-col-reverse md:flex-row'>
             <PromptContext.Provider value={{ prompt, updatePrompt }}>
               <div className='mx-4 flex flex-grow'>
                 <div className='w-full'>

@@ -8,14 +8,14 @@ export default function OperationWrapper(props: any) {
   return (
     <div className=''>
       <SelectLangsWrapper />
-      <div className='mt-8 w-full'>
-        <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
+      <div className='mt-8 mb-6 w-full md:mb-0'>
+        <IconContext.Provider value={{ color: 'white', size: '16px' }}>
           <button
             onClick={onSubmitClicked}
             // disabled={isDisabled}
             className={`${
               isDisabled && 'cursor-not-allowed'
-            } flex w-full cursor-pointer content-center justify-center rounded-lg border border-gray-900 bg-gray-900 py-2`}
+            } flex w-full cursor-pointer items-center justify-center rounded-lg border border-blue-800 bg-blue-800 py-2 shadow-md shadow-gray-700 hover:bg-blue-600`}
           >
             <BsTranslate />
             <span className='mx-4 text-lg'>Generate Code</span>
