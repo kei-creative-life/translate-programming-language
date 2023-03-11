@@ -67,7 +67,7 @@ export default function PromptView(props: PromptViewProps) {
             value={prompt}
             placeholder='const number = 10;'
             maxLength={2000}
-            className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg w-full rounded bg-gray-900 p-4 text-sm scrollbar scrollbar-thumb-white md:text-lg'
+            className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg w-full rounded bg-gray-900 p-4 text-base scrollbar scrollbar-thumb-white md:text-lg'
             style={{ height: '590px' }}
           ></textarea>
         </div>
