@@ -24,7 +24,7 @@ export default function PromptResult({ promptResponse }: any) {
         {/* <div className='h-full w-full break-words p-4 text-left'>No Result...</div> */}
         {/* <textarea className='h-full w-full break-words p-4 text-left' value={promptResponse} /> */}
         <div
-          className='h-full w-full overflow-scroll break-words p-4 text-left'
+          className='h-full w-full overflow-y-scroll break-words p-4 text-left'
           style={{ height: '500px' }}
           dangerouslySetInnerHTML={{ __html: promptResponse }}
         />

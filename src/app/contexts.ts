@@ -1,10 +1,8 @@
 import { createContext } from 'react'
 
 export const LangContext = createContext({
-  beforeLang: '',
-  updateBeforeLang: (e: Event): void => {},
-  afterLang: '',
-  updateAfterLang: (e: Event): void => {},
+  langType: '',
+  updateLangType: (langType: string): void => {},
 })
 
 export const PromptContext = createContext({
