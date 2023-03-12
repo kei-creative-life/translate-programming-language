@@ -1,5 +1,6 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef, useCallback } from 'react'
 import { LangContext } from '../../contexts'
+import { useBodyScrollLock } from '@/app/utils/useBodyScrollLock'
 
 export default function SelectLangsWrapper() {
   const langContextValue = useContext(LangContext)
@@ -31,11 +32,6 @@ export default function SelectLangsWrapper() {
     setFilteredLanguages(filteredLanguage)
   }
 
-  const updateSelectedLanguage = () => {
-    updateLangType(selectedLanguages)
-    setIsVisibleModal(false)
-  }
-
   const languageList = filteredLanguages.map((language, index) => (
     <li key={index}>
       <input
@@ -57,8 +53,24 @@ export default function SelectLangsWrapper() {
     </li>
   ))
 
+  const target = useRef<HTMLDivElement>(null)
+
+  useBodyScrollLock({
+    isVisibleModal,
+    target,
+  })
+
+  const handleOnDisable = useCallback(() => {
+    setIsVisibleModal(true)
+  }, [])
+
+  const updateSelectedLanguage = useCallback(() => {
+    updateLangType(selectedLanguages)
+    setIsVisibleModal(false)
+  }, [])
+
   return (
-    <div className='flex flex-row rounded-lg bg-gray-800 p-4 md:flex-col'>
+    <div ref={target} className='flex flex-row rounded-lg bg-gray-800 p-4 md:flex-col'>
       <div className='w-full'>
         <p className='mb-4'>
           <span className='text-xl font-bold'>Step1. </span>
@@ -67,7 +79,7 @@ export default function SelectLangsWrapper() {
         <p className='mb-4'>
           Your select languages: <span>{selectedLanguages || 'Not selected yet.'}</span>
         </p>
-        <button onClick={() => setIsVisibleModal(true)} className='w-full rounded-lg border border-blue-600 bg-blue-600 py-2 text-lg hover:bg-blue-800'>
+        <button onClick={handleOnDisable} className='w-full rounded-lg border border-blue-600 bg-blue-600 py-2 text-lg hover:bg-blue-800'>
           Choose Language
         </button>
       </div>
@@ -85,7 +97,7 @@ export default function SelectLangsWrapper() {
               onChange={(event) => searchLanguages(event.target.value)}
               type='text'
               id='simple-search'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
               placeholder='Input programming language name...'
               required
             />

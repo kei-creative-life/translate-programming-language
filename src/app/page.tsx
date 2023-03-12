@@ -46,7 +46,7 @@ export default function Home() {
 
     // Response...
     try {
-      const response = await getTranslatedCode(`convert ${prompt} from ${langType}.`)
+      const response = await getTranslatedCode(`convert "${prompt}" from ${langType}.`)
       setPromptResponse(response ?? '')
       setIsLoading(false)
       setIsGetResponse(true)
