@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import sanitize from 'sanitize-html'
-import { IconContext } from 'react-icons'
-import { RxClipboardCopy } from 'react-icons/rx'
 
 export default function PromptResult({ promptResponse }: any) {
   const [isClick, setIsClick] = useState(false)
@@ -19,23 +17,10 @@ export default function PromptResult({ promptResponse }: any) {
   }
 
   return (
-    <div className='h-full flex-col'>
-      <div className='flex h-full rounded-lg bg-gray-700 py-3 text-center '>
-        {/* <div className='h-full w-full break-words p-4 text-left'>No Result...</div> */}
-        {/* <textarea className='h-full w-full break-words p-4 text-left' value={promptResponse} /> */}
-        <div
-          className='h-full w-full overflow-y-scroll break-words p-4 text-left'
-          style={{ height: '500px' }}
-          dangerouslySetInnerHTML={{ __html: promptResponse }}
-        />
-        {/* <div className='px-4 pt-2'>
-          <IconContext.Provider value={{ color: 'white', size: '2rem' }}>
-            <button onClick={copyToClipboard} onAnimationEnd={() => setIsClick(false)}>
-              <RxClipboardCopy className={`${isClick && 'animate-scale-up-center'}`} />
-              <span>Copy</span>
-            </button>
-          </IconContext.Provider>
-        </div> */}
+    <div className='w-1/2 flex-col'>
+      <p className='mb-4 text-gray-900'>TypeScript Code</p>
+      <div className='flex h-full rounded-r-lg border bg-gray-100 text-center dark:bg-gray-700 '>
+        <div className='overflow-y-scroll break-words text-left' style={{ height: '500px' }} dangerouslySetInnerHTML={{ __html: promptResponse }} />
       </div>
     </div>
   )

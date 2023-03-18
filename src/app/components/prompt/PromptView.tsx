@@ -1,8 +1,5 @@
-import { useContext, useState, useEffect } from 'react'
-// import dynamic from 'next/dynamic'
-// import '@uiw/react-textarea-code-editor/dist.css'
-import { LangContext, PromptContext } from '../../contexts'
-import { IconContext } from 'react-icons'
+import { useContext, useEffect } from 'react'
+import { PromptContext } from '../../contexts'
 
 interface PromptViewProps {
   clearPrompt: () => void
@@ -34,19 +31,15 @@ export default function PromptView(props: PromptViewProps) {
   }, [prompt])
 
   return (
-    <div className='flex- mb-4 h-full flex-col'>
-      <div className='flex h-full rounded-b-lg bg-gray-800 pb-4 text-center'>
-        <div className='w-full'>
-          <textarea
-            onChange={(event) => updatePromptValue(event.target.value)}
-            value={prompt}
-            placeholder='const number = 10;'
-            maxLength={2000}
-            className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg w-full rounded bg-gray-900 p-4 text-base scrollbar scrollbar-thumb-white focus:outline-0 md:text-lg'
-            style={{ height: '500px' }}
-          ></textarea>
-        </div>
-      </div>
+    <div className='w-1/2'>
+      <p className='mb-4 text-gray-900'>JavaScript Code</p>
+      <textarea
+        onChange={(event) => updatePromptValue(event.target.value)}
+        value={prompt}
+        placeholder='const number = 10;'
+        maxLength={2000}
+        className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg h-full w-full rounded-l-lg border bg-white bg-gray-100  p-4 text-base text-gray-600 scrollbar scrollbar-thumb-white focus:outline-0 dark:bg-gray-900 md:text-lg'
+      ></textarea>
     </div>
   )
 }

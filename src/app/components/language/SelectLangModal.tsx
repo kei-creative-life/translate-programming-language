@@ -44,7 +44,7 @@ export default function SelectLangsWrapper() {
       />
       <label
         htmlFor={`${language.label}_${index}`}
-        className='inline-flex w-full cursor-pointer items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-gray-600 hover:bg-gray-50 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:peer-checked:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300 md:p-5'
+        className='inline-flex w-full cursor-pointer items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 text-gray-800 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-white hover:bg-gray-50 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-500 dark:text-gray-400 dark:peer-checked:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300 md:p-5'
       >
         <div className='block'>
           <div className='w-full text-sm font-semibold md:text-base'>{language.label}</div>
@@ -70,23 +70,19 @@ export default function SelectLangsWrapper() {
   }, [])
 
   return (
-    <div ref={target} className='flex flex-row rounded-lg bg-gray-800 p-4 md:flex-col'>
+    <div className='flex flex-row rounded-lg md:flex-col'>
       <div className='w-full'>
-        <p className='mb-4'>
-          <span className='text-xl font-bold'>Step1. </span>
-          <span> Select programming languages.</span>
-        </p>
-        <p className='mb-4'>
-          Your select languages: <span>{selectedLanguages || 'Not selected yet.'}</span>
-        </p>
-        <button onClick={handleOnDisable} className='w-full rounded-lg border border-blue-600 bg-blue-600 py-2 text-lg hover:bg-blue-800'>
+        <button
+          onClick={handleOnDisable}
+          className='w-full rounded-lg border bg-blue-600 py-2 text-lg dark:border-blue-600 dark:bg-blue-800 dark:hover:bg-blue-800'
+        >
           Choose Language
         </button>
       </div>
       <div
         className={`${
           isVisibleModal || 'hidden'
-        } fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gray-800 p-8`}
+        } fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gray-200 p-8 dark:bg-gray-800`}
       >
         <form className='mb-6 flex w-3/4 items-center md:w-1/2'>
           <label htmlFor='simple-search' className='sr-only'>
@@ -112,11 +108,13 @@ export default function SelectLangsWrapper() {
             <span className='sr-only'>Search</span>
           </button>
         </form>
-        <div className='text-lg font-bold'>You can translate {selectedLanguages}.</div>
-        <ul className='mb-8 grid w-full grid-cols-2 gap-6 overflow-y-scroll p-4 md:grid-cols-3'>{languageList}</ul>
-        <button className={`rounded-lg bg-blue-600 py-2 px-8 text-lg font-semibold hover:bg-blue-800 dark:bg-blue-600`} onClick={updateSelectedLanguage}>
-          Decide Language
-        </button>
+        <div className='mb-8 text-lg font-bold text-gray-800'>You can translate {selectedLanguages}.</div>
+        <ul className='mb-8 grid w-full grid-cols-2 gap-6 overflow-y-scroll p-4 md:grid-cols-3 lg:grid-cols-4'>{languageList}</ul>
+        <div>
+          <button className={`mx-2 rounded-lg bg-blue-600 py-2 px-8 text-lg font-semibold hover:bg-blue-800 dark:bg-blue-600`} onClick={updateSelectedLanguage}>
+            Decide Language
+          </button>
+        </div>
       </div>
     </div>
   )
