@@ -96,7 +96,7 @@ export default function Home() {
               <div className='mx-auto mb-8 w-3/4 rounded-lg bg-white p-8 dark:bg-gray-500'>
                 <SelectLangContext.Provider value={{ input, updateInput, output, updateOutput }}>
                   <TranslateOptions />
-                  <div className='mb-12 flex-col pb-12 md:flex'>
+                  <div className='mb-12 flex flex-col pb-12 md:flex-row'>
                     <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />
                     <PromptResult promptResponse={promptResponse} />
                   </div>
