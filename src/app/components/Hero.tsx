@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Link as Scroll } from 'react-scroll'
 
 export function Hero() {
   const languages = ['ruby', 'javascript', 'python', 'php']
@@ -13,12 +14,11 @@ export function Hero() {
           Paste or write your programming code below, and you’ll get translated programming code what you want within seconds using Chat GPT.
         </p>
         <div className='mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 lg:mb-16'>
-          <a
-            href='#'
-            className='inline-flex items-center justify-center rounded-lg border border-blue-500 bg-blue-500 py-3 px-5 text-center text-base font-medium text-white focus:ring-4 focus:ring-gray-100 hover:bg-blue-600 dark:border-gray-700 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-700'
-          >
-            Try it out
-          </a>
+          <span className='inline-flex items-center justify-center rounded-lg border border-blue-500 bg-blue-500 py-3 px-5 text-center text-base font-medium text-white focus:ring-4 focus:ring-gray-100 hover:bg-blue-600 dark:border-gray-700 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-700'>
+            <Scroll to='try' smooth={true}>
+              Try it out
+            </Scroll>
+          </span>
         </div>
         <div className='mx-auto px-4 text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36'>
           <span className='font-semibold uppercase text-gray-400'>SUPPORT LANGUAGES</span>

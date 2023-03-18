@@ -20,7 +20,7 @@ export default function PromptView(props: PromptViewProps) {
   }
 
   return (
-    <div className='w-1/2'>
+    <div className='mb-8 w-full md:mb-0 md:w-1/2'>
       <div className='mb-4 pr-4'>
         <p className='mb-2 text-xl text-gray-900 dark:text-white'>{`${input || 'JavaScript'}`} Code</p>
         <button className='mr-4 rounded bg-blue-600 px-4 dark:bg-blue-900' onClick={onSubmitClicked}>

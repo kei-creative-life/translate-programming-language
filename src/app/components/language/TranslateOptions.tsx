@@ -12,7 +12,7 @@ export function TranslateOptions() {
     {
       label: 'JavaScript_TypeScript',
       inputLang: 'javascript',
-      outputLang: 'TypeScript',
+      outputLang: 'typeScript',
       annotation: 'JavaScript into Typescript.',
     },
     {
