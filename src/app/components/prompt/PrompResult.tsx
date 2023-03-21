@@ -1,22 +1,21 @@
 import { useState, useContext } from 'react'
 import { LangType } from '@/app/types/app'
 import { SelectLangContext } from '../../contexts'
-// import rehypeRaw from 'rehype-raw'
-// import rehypeSanitize from 'rehype-sanitize'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
+// import rehypeRaw from 'rehype-raw'
+// import rehypeSanitize from 'rehype-sanitize'
 
 export default function PromptResult({ promptResponse }: any) {
-  const [isClick, setIsClick] = useState(false)
+  // const [isClick, setIsClick] = useState(false)
   const selectLangContextValue = useContext(SelectLangContext)
 
   const { output, updateOutput } = selectLangContextValue
 
-  // TODO deleting other unnecessary words
-  const copyToClipboard = () => {
-    global.navigator.clipboard.writeText(promptResponse)
-    setIsClick(true)
-  }
+  // const copyToClipboard = () => {
+  //   global.navigator.clipboard.writeText(promptResponse)
+  //   setIsClick(true)
+  // }
 
   const convertLangCode = (lang: string) => {
     switch (lang) {

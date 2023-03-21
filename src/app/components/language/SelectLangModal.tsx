@@ -1,6 +1,7 @@
 import { useState, useContext, useRef, useCallback } from 'react'
 import { LangContext } from '../../contexts'
 import { useBodyScrollLock } from '@/app/utils/useBodyScrollLock'
+import { LangType } from '@/app/types/app'
 
 export default function SelectLangsWrapper() {
   const langContextValue = useContext(LangContext)
@@ -21,7 +22,7 @@ export default function SelectLangsWrapper() {
     { label: 'PHP to Python' },
     { label: 'PHP to JavaScript' },
   ]
-  const [selectedLanguages, setSelectedLanguages] = useState('')
+  const [selectedLanguages, setSelectedLanguages] = useState<LangType>('Ruby')
   const [filteredLanguages, setFilteredLanguages] = useState(languages)
   const [isVisibleModal, setIsVisibleModal] = useState(false)
 
@@ -40,7 +41,7 @@ export default function SelectLangsWrapper() {
         value={language.label}
         checked={language.label === selectedLanguages}
         className='peer hidden'
-        onChange={(e) => setSelectedLanguages(e.target.value)}
+        onChange={(e) => setSelectedLanguages(e.target.value as LangType)}
       />
       <label
         htmlFor={`${language.label}_${index}`}
