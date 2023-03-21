@@ -45,6 +45,7 @@ export default function SelectLangsWrapper() {
       />
       <label
         htmlFor={`${language.label}_${index}`}
+        // eslint-disable-next-line
         className='inline-flex w-full cursor-pointer items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 text-gray-800 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-checked:text-white hover:bg-gray-50 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-500 dark:text-gray-400 dark:peer-checked:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300 md:p-5'
       >
         <div className='block'>
@@ -83,7 +84,7 @@ export default function SelectLangsWrapper() {
       <div
         className={`${
           isVisibleModal || 'hidden'
-        } fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gray-200 p-8 dark:bg-gray-800`}
+        } fixed inset-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gray-200 p-8 dark:bg-gray-800`}
       >
         <form className='mb-6 flex w-3/4 items-center md:w-1/2'>
           <label htmlFor='simple-search' className='sr-only'>
@@ -94,7 +95,7 @@ export default function SelectLangsWrapper() {
               onChange={(event) => searchLanguages(event.target.value)}
               type='text'
               id='simple-search'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
               placeholder='Input programming language name...'
               required
             />

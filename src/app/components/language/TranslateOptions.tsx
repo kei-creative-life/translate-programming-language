@@ -62,7 +62,6 @@ export function TranslateOptions() {
 
   return (
     <div className='mb-12'>
-      <p className='py-4 text-center text-2xl font-bold text-gray-900'>Let's try it out.</p>
       <ul className='grid w-full gap-6 md:grid-cols-3'>
         {options.map((option) => (
           <li key={option.label}>

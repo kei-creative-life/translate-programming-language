@@ -8,9 +8,7 @@ export default function Overlay(props: OverlayProps) {
   const { isLoading, promptError, setIsLoading } = props
   return (
     <div
-      className={`${
-        isLoading || 'hidden'
-      } fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gray-700 opacity-90`}
+      className={`${isLoading || 'hidden'} fixed inset-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gray-700 opacity-90`}
     >
       <div className={`${promptError && 'hidden'} m-4 flex justify-center`}>
         <div className='h-2 w-2 animate-ping rounded-full bg-white'></div>
@@ -24,7 +22,8 @@ export default function Overlay(props: OverlayProps) {
       </h2>
       <p className={`${promptError && 'hidden'} text-center text-white md:text-lg`}>
         This may take a few seconds,
-        <br /> please don't close this page.
+        <br />
+        please do not close this page.
       </p>
       <button
         className={`${promptError || 'hidden'} rounded-lg bg-blue-600 py-2 px-8 text-lg font-semibold dark:bg-blue-900`}
