@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ToggleDarkMode } from '../ToggleDarkMode'
+// import { ToggleDarkMode } from '../ToggleDarkMode'
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
             <div className='text-md mr-4 md:text-xl lg:text-2xl'>🥴</div>
             <span className='text-md self-center whitespace-nowrap font-semibold text-gray-900 dark:text-white md:text-2xl lg:text-3xl'>Cheat Programming</span>
           </Link>
-          <ToggleDarkMode />
+          {/* <ToggleDarkMode /> */}
         </div>
       </nav>
     </header>

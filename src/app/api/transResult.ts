@@ -15,10 +15,11 @@ export const getTranslatedCode = async (prompt: string) => {
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
+    stop: ['###'],
   })
 
   if (response.status !== 200) throw new Error('Something went wrong')
   if (!response.data.choices[0].text) return ''
 
-  return response.data.choices[0].text?.replace(/^\n\n/, '').replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;')
+  return response.data.choices[0].text?.replace(/^\n    /, '')
 }

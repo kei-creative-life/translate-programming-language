@@ -1,8 +1,9 @@
 import { createContext } from 'react'
+import { LangType } from './types/app'
 
 export const LangContext = createContext({
   langType: '',
-  updateLangType: (langType: string): void => {},
+  updateLangType: (langType: LangType): void => {},
 })
 
 export const PromptContext = createContext({
@@ -11,8 +12,8 @@ export const PromptContext = createContext({
 })
 
 export const SelectLangContext = createContext({
-  input: 'JavaScript',
-  updateInput: (lang: string): void => {},
-  output: 'TypeScript',
-  updateOutput: (lang: string): void => {},
+  input: '' as LangType,
+  updateInput: (lang: LangType): void => {},
+  output: '',
+  updateOutput: (lang: LangType): void => {},
 })

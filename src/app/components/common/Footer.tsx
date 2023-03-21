@@ -7,7 +7,8 @@ export default function Footer() {
             <span className='sr-only'>GitHub</span>
           </a>
         </div>
-        <p className='mt-2 text-center text-sm text-gray-800 dark:text-gray-300 md:text-base'>© 2023 Kengo Yamamoto</p>
+        <p className='mt-2 text-center text-sm text-gray-800 dark:text-gray-300 md:text-base'>© 2023 Cheat Programming</p>
+        {/* <p className='mt-2 text-center text-sm text-gray-800 dark:text-gray-300 md:text-base'>Made by Kengo Yamamoto</p> */}
       </div>
     </footer>
   )

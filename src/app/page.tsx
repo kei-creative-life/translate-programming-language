@@ -1,20 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import PromptResult from './components/prompt/PrompResult'
+import { LangType } from './types/app'
 import { getTranslatedCode } from './api/transResult'
-import PromptView from './components/prompt/PromptView'
 import { LangContext, PromptContext, SelectLangContext } from './contexts'
-import Overlay from './components/Overlay'
-import OperationWrapper from './components/OperationWrapper'
-import { Hero } from './components/Hero'
 import { TranslateOptions } from './components/language/TranslateOptions'
+import PromptResult from './components/prompt/PrompResult'
+import PromptView from './components/prompt/PromptView'
+import Overlay from './components/Overlay'
+import { Hero } from './components/Hero'
 
 export default function Home() {
   // Programming Language
   const [langType, setLangType] = useState<string>('')
-  const [input, setInput] = useState<string>('')
-  const [output, setOutput] = useState<string>('')
+  const [input, setInput] = useState<LangType>('Ruby')
+  const [output, setOutput] = useState<LangType>('Python')
 
   // Prompt
   const [prompt, setPrompt] = useState<string>('')
@@ -28,15 +28,15 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isPromptVisible, setIsPromptVisible] = useState<boolean>(true)
 
-  const updateLangType = (langType: string): void => {
+  const updateLangType = (langType: LangType): void => {
     setLangType(langType)
   }
 
-  const updateInput = (langType: string): void => {
+  const updateInput = (langType: LangType): void => {
     setInput(langType)
   }
 
-  const updateOutput = (langType: string): void => {
+  const updateOutput = (langType: LangType): void => {
     setOutput(langType)
   }
 
@@ -56,7 +56,8 @@ export default function Home() {
 
     // Response...
     try {
-      const response = await getTranslatedCode(`translate "${prompt}" from ${input} into ${output}.`)
+      const imperativeSentence = `##### Translate this code from ${input} into ${output}\n ### ${input}\n    \n    ${prompt}\n    \n### ${output}`
+      const response = await getTranslatedCode(imperativeSentence)
       setPromptResponse(response ?? '')
       setIsLoading(false)
       setIsGetResponse(true)
@@ -90,12 +91,9 @@ export default function Home() {
         <LangContext.Provider value={{ langType, updateLangType }}>
           <div className='-mt-20 md:-mt-32'>
             <PromptContext.Provider value={{ prompt, updatePrompt }}>
-              {/* <div className='px-4 lg:w-4/12'>
-                <OperationWrapper onSubmitClicked={onPromptSubmit} langType={langType} prompt={prompt} />
-              </div> */}
               <div className='mx-auto mb-8 w-3/4 rounded-lg bg-white p-8 dark:bg-gray-500'>
                 <SelectLangContext.Provider value={{ input, updateInput, output, updateOutput }}>
-                  <TranslateOptions />
+                  {/* <TranslateOptions /> */}
                   <div className='mb-12 flex flex-col pb-12 md:flex-row'>
                     <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />
                     <PromptResult promptResponse={promptResponse} />
