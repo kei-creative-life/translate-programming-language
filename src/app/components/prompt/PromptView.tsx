@@ -15,9 +15,11 @@ export default function PromptView(props: PromptViewProps) {
 
   // Handle Input Language
   const inputLanguage = useSelector(inputLang)
-  const setInputLang = (inputLangValue: string): void => {
+  const setInputLang = (inputLangValue: LangType): void => {
     dispatch(setInputLanguage(inputLangValue))
   }
+
+  const langOptions = ['Ruby', 'JavaScript', 'Python', 'Php']
 
   // Handle Prompt
   const { clearPrompt, onSubmitClicked, isLoading } = props
@@ -41,8 +43,6 @@ export default function PromptView(props: PromptViewProps) {
     if (!inputLanguage) return 'Ruby'
     return placeHolders[inputLanguage]
   }
-
-  const langOptions = ['Ruby', 'JavaScript', 'Python', 'Php']
 
   return (
     <div className='mb-8 w-full md:mb-0 md:w-1/2'>

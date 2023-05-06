@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { LangType } from '@/app/types/app'
+import type { RootState, AppDispatch } from './store'
 
-const initialState = {
+interface InitialState {
+  inputLang: LangType
+  outputLang: LangType
+}
+
+const initialState: InitialState = {
   inputLang: 'Ruby',
   outputLang: 'Python',
 }
@@ -20,8 +27,8 @@ export const languageSlice = createSlice({
 
 export const { setInputLanguage, setOutputLanguage } = languageSlice.actions
 
-export const inputLang = (state: any) => state.language.inputLang
+export const inputLang = (state: RootState) => state.language.inputLang
 
-export const outputLang = (state: any) => state.language.outputLang
+export const outputLang = (state: RootState) => state.language.outputLang
 
 export default languageSlice.reducer
