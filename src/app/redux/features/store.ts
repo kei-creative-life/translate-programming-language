@@ -2,10 +2,12 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 import languageReducer from './LanguageSlice'
+import promptReducer from './PromptSlice'
 
 export const store = configureStore({
   reducer: {
     language: languageReducer,
+    prompt: promptReducer,
   },
 })
 

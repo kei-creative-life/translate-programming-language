@@ -1,12 +1,8 @@
 import { useState, useContext, useRef, useCallback } from 'react'
-import { LangContext } from '../../contexts'
 import { useBodyScrollLock } from '@/app/utils/useBodyScrollLock'
 import { LangType } from '@/app/types/app'
 
 export default function SelectLangsWrapper() {
-  const langContextValue = useContext(LangContext)
-  const { updateLangType } = langContextValue
-
   const languages = [
     { label: 'JavaScript to\n TypeScript' },
     { label: 'JavaScript to\n Ruby' },
@@ -67,7 +63,6 @@ export default function SelectLangsWrapper() {
   }, [])
 
   const updateSelectedLanguage = useCallback(() => {
-    updateLangType(selectedLanguages)
     setIsVisibleModal(false)
   }, [])
 
@@ -112,11 +107,6 @@ export default function SelectLangsWrapper() {
         </form>
         <div className='mb-8 text-lg font-bold text-gray-800'>You can translate {selectedLanguages}.</div>
         <ul className='mb-8 grid w-full grid-cols-2 gap-6 overflow-y-scroll p-4 md:grid-cols-3 lg:grid-cols-4'>{languageList}</ul>
-        <div>
-          <button className={`mx-2 rounded-lg bg-blue-600 py-2 px-8 text-lg font-semibold hover:bg-blue-800 dark:bg-blue-600`} onClick={updateSelectedLanguage}>
-            Decide Language
-          </button>
-        </div>
       </div>
     </div>
   )

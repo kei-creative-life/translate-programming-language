@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { outputLang, setOutputLanguage } from '../../redux/features/LanguageSlice'
+import { outputLang, setOutputLanguageReducer } from '../../redux/features/LanguageSlice'
 import { LangType } from '@/app/types/app'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -9,8 +9,8 @@ export default function PromptResult({ promptResponse }: any) {
 
   // Handle Input Language
   const outputLanguage = useSelector(outputLang)
-  const setInputLang = (outputLangValue: string): void => {
-    dispatch(setOutputLanguage(outputLangValue))
+  const setOutputLanguage = (outputLangValue: string): void => {
+    dispatch(setOutputLanguageReducer(outputLangValue))
   }
 
   const convertLangCode = () => {
@@ -19,8 +19,6 @@ export default function PromptResult({ promptResponse }: any) {
         return 'python'
       case 'JavaScript':
         return 'js'
-      case 'TypeScript':
-        return 'ts'
       case 'Ruby':
         return 'ruby'
       case 'Php':
@@ -41,7 +39,7 @@ export default function PromptResult({ promptResponse }: any) {
           </label>
           <select
             id='output'
-            onChange={(e) => setInputLang(e.target.value as LangType)}
+            onChange={(e) => setOutputLanguage(e.target.value as LangType)}
             className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
           >
             {langOptions.map((langOption) => (

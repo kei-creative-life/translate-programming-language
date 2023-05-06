@@ -1,11 +1,9 @@
-import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { inputLang, setInputLanguage } from '../../redux/features/LanguageSlice'
-import { PromptContext } from '../../contexts'
+import { inputLang, setInputLanguageReducer } from '@/app/redux/features/LanguageSlice'
+import { getPrompt, updatePromptReducer, clearPromptReducer } from '@/app/redux/features/PromptSlice'
 import { LangType } from '@/app/types/app'
 
 interface PromptViewProps {
-  clearPrompt: () => void
   onSubmitClicked: () => Promise<void>
   isLoading: boolean
 }
@@ -15,21 +13,23 @@ export default function PromptView(props: PromptViewProps) {
 
   // Handle Input Language
   const inputLanguage = useSelector(inputLang)
-  const setInputLang = (inputLangValue: LangType): void => {
-    dispatch(setInputLanguage(inputLangValue))
+  const setInputLanguage = (inputLangValue: LangType): void => {
+    dispatch(setInputLanguageReducer(inputLangValue))
   }
 
   const langOptions = ['Ruby', 'JavaScript', 'Python', 'Php']
 
   // Handle Prompt
-  const { clearPrompt, onSubmitClicked, isLoading } = props
-  const promptContextValue = useContext(PromptContext)
-  const { prompt, updatePrompt } = promptContextValue
-
-  const updatePromptValue = (prompt: string) => {
-    updatePrompt(prompt)
+  const prompt = useSelector(getPrompt)
+  const updatePrompt = (value: string) => {
+    dispatch(updatePromptReducer(value))
   }
+  const clearPrompt = () => {
+    dispatch(clearPromptReducer())
+  }
+  const { onSubmitClicked } = props
 
+  // Handle Placeholder
   const placeHolders = {
     Ruby: 'if num % 3 == 0 && num % 5 == 0\n    puts ”FizzBuzz”\n  elsif num % 3 == 0\n    puts ”Fizz”\n  elsif num % 5 == 0\n    puts ”Buzz”\n  else \n    puts num\nend',
     Python:
@@ -53,7 +53,7 @@ export default function PromptView(props: PromptViewProps) {
           </label>
           <select
             id='input'
-            onChange={(e) => setInputLang(e.target.value as LangType)}
+            onChange={(e) => setInputLanguage(e.target.value as LangType)}
             className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
           >
             {langOptions.map((langOption) => (
@@ -65,7 +65,7 @@ export default function PromptView(props: PromptViewProps) {
         </div>
       </div>
       <textarea
-        onChange={(event) => updatePromptValue(event.target.value)}
+        onChange={(event) => updatePrompt(event.target.value)}
         value={prompt}
         placeholder={generatePlaceholder()}
         maxLength={2000}
@@ -74,6 +74,9 @@ export default function PromptView(props: PromptViewProps) {
       ></textarea>
       <button className='mr-4 rounded bg-blue-600 px-4 dark:bg-blue-900' onClick={onSubmitClicked}>
         Translate
+      </button>
+      <button className='mr-4 rounded bg-red-600 px-4 dark:bg-red-900' onClick={clearPrompt}>
+        Clear
       </button>
     </div>
   )
