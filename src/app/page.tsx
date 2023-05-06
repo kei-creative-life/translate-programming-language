@@ -55,7 +55,7 @@ export default function Home() {
   }
 
   return (
-    <main className='grow bg-gray-100 dark:bg-gray-800'>
+    <main className='grow bg-main-gray dark:bg-gray-800'>
       <div className='flex flex-col'>
         <Overlay isLoading={isLoading} setIsLoading={setIsLoading} promptError={promptError} />
         <Hero />

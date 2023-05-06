@@ -48,7 +48,7 @@ export default function PromptView(props: PromptViewProps) {
     <div className='mb-8 w-full md:mb-0 md:w-1/2'>
       <div className='mb-4 pr-4'>
         <div className='mb-4'>
-          <label htmlFor='input' className='mb-2 block text-xl font-medium text-gray-900 dark:text-white'>
+          <label htmlFor='input' className='mb-2 block font-main text-xl font-medium text-gray-900 dark:text-white'>
             Translate from{' '}
           </label>
           <select
@@ -72,10 +72,10 @@ export default function PromptView(props: PromptViewProps) {
         style={{ fontFamily: '"Consolas,Monaco","Andale Mono","monospace"' }}
         className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg h-96 w-full overflow-y-auto rounded-l-lg border bg-white p-4 text-lg text-gray-600 scrollbar scrollbar-thumb-white focus:outline-0 dark:border-gray-600 dark:bg-gray-900 md:text-lg'
       ></textarea>
-      <button className='mr-4 rounded bg-blue-600 px-4 dark:bg-blue-900' onClick={onSubmitClicked}>
+      <button className='mr-4 rounded bg-sub-blue px-4 font-main dark:bg-blue-900' onClick={onSubmitClicked}>
         Translate
       </button>
-      <button className='mr-4 rounded bg-red-600 px-4 dark:bg-red-900' onClick={clearPrompt}>
+      <button className='mr-4 rounded bg-red-600 px-4 font-main dark:bg-red-900' onClick={clearPrompt}>
         Clear
       </button>
     </div>

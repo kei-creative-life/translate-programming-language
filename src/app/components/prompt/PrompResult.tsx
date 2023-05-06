@@ -34,7 +34,7 @@ export default function PromptResult({ promptResponse }: any) {
     <div className='w-full md:w-1/2'>
       <div className='mb-4 pr-4'>
         <div className='mb-4'>
-          <label htmlFor='output' className='mb-2 block text-xl font-medium text-gray-900 dark:text-white'>
+          <label htmlFor='output' className='mb-2 block font-main text-xl font-medium text-gray-900 dark:text-white'>
             Translate To{' '}
           </label>
           <select
