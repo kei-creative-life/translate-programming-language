@@ -1,32 +1,28 @@
-import { useState, useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { outputLang, setOutputLanguage } from '../../redux/features/LanguageSlice'
 import { LangType } from '@/app/types/app'
-import { SelectLangContext } from '../../contexts'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
-// import rehypeRaw from 'rehype-raw'
-// import rehypeSanitize from 'rehype-sanitize'
 
 export default function PromptResult({ promptResponse }: any) {
-  // const [isClick, setIsClick] = useState(false)
-  const selectLangContextValue = useContext(SelectLangContext)
+  const dispatch = useDispatch()
 
-  const { output, updateOutput } = selectLangContextValue
+  // Handle Input Language
+  const outputLanguage = useSelector(outputLang)
+  const setInputLang = (outputLangValue: string): void => {
+    dispatch(setOutputLanguage(outputLangValue))
+  }
 
-  // const copyToClipboard = () => {
-  //   global.navigator.clipboard.writeText(promptResponse)
-  //   setIsClick(true)
-  // }
-
-  const convertLangCode = (lang: string) => {
-    switch (lang) {
+  const convertLangCode = () => {
+    switch (outputLanguage) {
+      case 'Python':
+        return 'python'
       case 'JavaScript':
         return 'js'
       case 'TypeScript':
         return 'ts'
       case 'Ruby':
         return 'ruby'
-      case 'Python':
-        return 'python'
       case 'Php':
         return 'php'
       default:
@@ -34,7 +30,7 @@ export default function PromptResult({ promptResponse }: any) {
     }
   }
 
-  const langOptions = ['JavaScript', 'Ruby', 'Python', 'Php']
+  const langOptions = ['Python', 'JavaScript', 'Ruby', 'Php']
 
   return (
     <div className='w-full md:w-1/2'>
@@ -45,7 +41,7 @@ export default function PromptResult({ promptResponse }: any) {
           </label>
           <select
             id='output'
-            onChange={(e) => updateOutput(e.target.value as LangType)}
+            onChange={(e) => setInputLang(e.target.value as LangType)}
             className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
           >
             {langOptions.map((langOption) => (
@@ -55,22 +51,12 @@ export default function PromptResult({ promptResponse }: any) {
             ))}
           </select>
         </div>
-        {/* <button className='rounded bg-blue-600 px-4 dark:bg-blue-900' onClick={copyToClipboard}>
-          Copy
-        </button> */}
       </div>
       <div className='flex h-96 rounded-r-lg text-center dark:bg-gray-700'>
         <div className='h-full w-full rounded-r-lg border bg-white text-left text-base text-gray-600 dark:border-gray-600 dark:bg-gray-900 md:text-lg'>
           {promptResponse && (
             <pre>
-              <SyntaxHighlighter
-                style={coy}
-                language={convertLangCode(output)}
-                PreTag='div'
-                // eslint-disable-next-line
-                children={promptResponse}
-                // rehypePlugins={[rehypeRaw, rehypeSanitize]}
-              />
+              <SyntaxHighlighter style={coy} language={convertLangCode()} PreTag='div' children={promptResponse} />
             </pre>
           )}
         </div>

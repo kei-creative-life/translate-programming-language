@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import { LangType } from './types/app'
 import { getTranslatedCode } from './api/transResult'
-import { LangContext, PromptContext, SelectLangContext } from './contexts'
-import { TranslateOptions } from './components/language/TranslateOptions'
+import { LangContext, PromptContext } from './contexts'
 import PromptResult from './components/prompt/PrompResult'
 import PromptView from './components/prompt/PromptView'
 import Overlay from './components/Overlay'
@@ -92,13 +91,10 @@ export default function Home() {
           <div className='-mt-20 md:-mt-32'>
             <PromptContext.Provider value={{ prompt, updatePrompt }}>
               <div className='mx-auto mb-8 w-3/4 rounded-lg bg-white p-8 dark:bg-gray-500'>
-                <SelectLangContext.Provider value={{ input, updateInput, output, updateOutput }}>
-                  {/* <TranslateOptions /> */}
-                  <div className='mb-12 flex flex-col pb-12 md:flex-row'>
-                    <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />
-                    <PromptResult promptResponse={promptResponse} />
-                  </div>
-                </SelectLangContext.Provider>
+                <div className='mb-12 flex flex-col pb-12 md:flex-row'>
+                  <PromptView clearPrompt={clearPrompt} onSubmitClicked={onPromptSubmit} isLoading={isLoading} />
+                  <PromptResult promptResponse={promptResponse} />
+                </div>
               </div>
             </PromptContext.Provider>
           </div>

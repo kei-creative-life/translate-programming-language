@@ -10,10 +10,3 @@ export const PromptContext = createContext({
   prompt: '',
   updatePrompt: (prompt: string): void => {},
 })
-
-export const SelectLangContext = createContext({
-  input: '' as LangType,
-  updateInput: (lang: LangType): void => {},
-  output: '',
-  updateOutput: (lang: LangType): void => {},
-})
