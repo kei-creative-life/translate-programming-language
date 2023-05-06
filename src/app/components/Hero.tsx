@@ -14,7 +14,7 @@ export function Hero() {
           Paste or write your programming code below, and you’ll get translated programming code what you want within seconds using Chat GPT.
         </p>
         <div className='mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 lg:mb-16'>
-          <span className='inline-flex items-center justify-center rounded-lg border border-white bg-sub-blue py-3 px-5 text-center font-main text-base font-medium text-white focus:ring-4 focus:ring-gray-100 hover:bg-blue-500 dark:border-gray-700 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-700'>
+          <span className='inline-flex items-center justify-center rounded-lg border border-white bg-sub-blue py-3 px-5 text-center font-main text-base font-medium text-white focus:ring-4 focus:ring-gray-100  dark:border-gray-700 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-700'>
             <Scroll to='try' smooth={true}>
               Try it out
             </Scroll>

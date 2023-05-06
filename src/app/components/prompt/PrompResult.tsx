@@ -54,7 +54,9 @@ export default function PromptResult({ promptResponse }: any) {
         <div className='h-full w-full rounded-r-lg border bg-white text-left text-base text-gray-600 dark:border-gray-600 dark:bg-gray-900 md:text-lg'>
           {promptResponse && (
             <pre>
-              <SyntaxHighlighter style={coy} language={convertLangCode()} PreTag='div' children={promptResponse} />
+              <SyntaxHighlighter style={coy} language={convertLangCode()} PreTag='div'>
+                {promptResponse}
+              </SyntaxHighlighter>
             </pre>
           )}
         </div>
