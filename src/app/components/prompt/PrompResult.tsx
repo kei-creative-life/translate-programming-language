@@ -61,16 +61,18 @@ export default function PromptResult({ promptResponse }: any) {
       </div>
       <div className='flex h-96 rounded-r-lg text-center dark:bg-gray-700'>
         <div className='h-full w-full rounded-r-lg border bg-white text-left text-base text-gray-600 dark:border-gray-600 dark:bg-gray-900 md:text-lg'>
-          <pre>
-            <SyntaxHighlighter
-              style={coy}
-              language={convertLangCode(output)}
-              PreTag='div'
-              // eslint-disable-next-line
-              children={promptResponse}
-              // rehypePlugins={[rehypeRaw, rehypeSanitize]}
-            />
-          </pre>
+          {promptResponse && (
+            <pre>
+              <SyntaxHighlighter
+                style={coy}
+                language={convertLangCode(output)}
+                PreTag='div'
+                // eslint-disable-next-line
+                children={promptResponse}
+                // rehypePlugins={[rehypeRaw, rehypeSanitize]}
+              />
+            </pre>
+          )}
         </div>
       </div>
     </div>

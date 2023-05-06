@@ -56,9 +56,9 @@ export default function PromptView(props: PromptViewProps) {
           </select>
         </div>
 
-        {/* <button className='mr-4 rounded bg-blue-600 px-4 dark:bg-blue-900' onClick={onSubmitClicked}>
+        <button className='mr-4 rounded bg-blue-600 px-4 dark:bg-blue-900' onClick={onSubmitClicked}>
           Translate
-        </button> */}
+        </button>
       </div>
       <textarea
         onChange={(event) => updatePromptValue(event.target.value)}
