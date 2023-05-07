@@ -1,4 +1,5 @@
 import './globals.css'
+import React from 'react'
 import { Providers } from './redux/features/provider'
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'

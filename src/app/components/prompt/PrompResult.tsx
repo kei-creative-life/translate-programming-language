@@ -10,7 +10,6 @@ export default function PromptResult({ promptResponse }: any) {
   const dispatch = useDispatch()
 
   // Handle Input Language
-  const langOptions = ['Python', 'JavaScript', 'Ruby', 'Php']
   const outputLanguage = useSelector(outputLang)
   const setOutputLanguage = (langType: LangType): void => {
     dispatch(setOutputLanguageReducer(langType))
@@ -36,7 +35,7 @@ export default function PromptResult({ promptResponse }: any) {
       <div className='mb-4 pr-4'>
         <div className='mb-4'>
           <Label text='Translate to' />
-          <SelectBox defaultValue='Python' id='output' options={langOptions} onChange={(e) => setOutputLanguage(e.target.value as LangType)} />
+          <SelectBox defaultValue='Python' id='output' onChange={(e) => setOutputLanguage(e.target.value as LangType)} />
         </div>
       </div>
       <div className='flex h-96 rounded-r-lg text-center dark:bg-gray-700'>

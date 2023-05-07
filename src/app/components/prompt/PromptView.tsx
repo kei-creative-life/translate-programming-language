@@ -1,35 +1,70 @@
+import React, { memo, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { inputLang, setInputLanguageReducer } from '@/app/redux/features/LanguageSlice'
+import { inputLang, setInputLanguageReducer, outputLang } from '@/app/redux/features/LanguageSlice'
 import { getPrompt, updatePromptReducer, clearPromptReducer } from '@/app/redux/features/PromptSlice'
 import { LangType } from '@/app/types/app'
 import SelectBox from '@/app/components/forms/SelectBox'
 import Button from '@/app/components/forms/Button'
 import Label from '../forms/Label'
 
+import { getTranslatedCode } from '@/app/api/transResult'
+
 interface PromptViewProps {
-  onSubmitClicked: () => Promise<void>
   isLoading: boolean
 }
 
-export default function PromptView(props: PromptViewProps) {
+const PromptView = (props: PromptViewProps) => {
   const dispatch = useDispatch()
 
   // Handle Input Language
-  const langOptions = ['Ruby', 'JavaScript', 'Python', 'Php']
   const inputLanguage = useSelector(inputLang)
+  const outputLanguage = useSelector(outputLang)
   const setInputLanguage = (langType: LangType): void => {
     dispatch(setInputLanguageReducer(langType))
   }
 
   // Handle Prompt
   const prompt = useSelector(getPrompt)
+  const [promptResponse, setPromptResponse] = useState<string>('')
+  const [isGetResponse, setIsGetResponse] = useState<boolean>(false)
+  const [promptError, setPromptError] = useState<string>('')
+  const [isStartTranslate, setIsStartTranslate] = useState<boolean>(false)
+  const [isDisabled, setIsDisabled] = useState(true)
+
   const updatePrompt = (value: string) => {
     dispatch(updatePromptReducer(value))
   }
-  const clearPrompt = () => {
+  const clearPrompt = useCallback(() => {
     dispatch(clearPromptReducer())
-  }
-  const { onSubmitClicked } = props
+  }, [dispatch])
+
+  const onPromptSubmit = useCallback(async () => {
+    setPromptError('')
+    // setIsLoading(true)
+    setIsStartTranslate(true)
+
+    try {
+      const imperativeSentence = `##### Translate this code from ${inputLanguage} into ${outputLanguage}\n ### ${inputLanguage}\n    \n    ${prompt}\n    \n### ${outputLanguage}`
+      const response = await getTranslatedCode(imperativeSentence)
+      setPromptResponse(response ?? '')
+      // setIsLoading(false)
+      setIsGetResponse(true)
+    } catch (err: any) {
+      const errType = err.response.data.error.type
+      switch (errType) {
+        case 'invalid_request_error':
+        case 'server_error':
+          setPromptError(errType)
+          break
+
+        default:
+          // setIsLoading(false)
+          break
+      }
+    } finally {
+      setIsStartTranslate(false)
+    }
+  }, [])
 
   // Handle Placeholder
   const placeHolders = {
@@ -51,7 +86,7 @@ export default function PromptView(props: PromptViewProps) {
       <div className='mb-4 pr-4'>
         <div className='mb-4'>
           <Label text='Translate from' />
-          <SelectBox defaultValue='Ruby' id='input' options={langOptions} onChange={(e) => setInputLanguage(e.target.value as LangType)} />
+          <SelectBox defaultValue='Ruby' id='input' onChange={(e) => setInputLanguage(e.target.value as LangType)} />
         </div>
       </div>
       <textarea
@@ -62,8 +97,10 @@ export default function PromptView(props: PromptViewProps) {
         style={{ fontFamily: '"Consolas,Monaco","Andale Mono","monospace"' }}
         className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg h-96 w-full overflow-y-auto rounded-l-lg border bg-white p-4 text-lg text-gray-600 scrollbar scrollbar-thumb-white focus:outline-0 dark:border-gray-600 dark:bg-gray-900 md:text-lg'
       ></textarea>
-      <Button bgColor='bg-sub-blue dark:bg-blue-900' text='Translate' onClick={onSubmitClicked} />
+      <Button bgColor='bg-sub-blue dark:bg-blue-900' text='Translate' onClick={onPromptSubmit} />
       <Button bgColor='bg-red-600 dark:bg-red-900' text='Clear' onClick={clearPrompt} />
     </div>
   )
 }
+
+export default memo(PromptView)

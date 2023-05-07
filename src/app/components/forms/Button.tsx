@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 interface ButtonProps {
   bgColor: string
   textColor?: string
@@ -9,6 +11,7 @@ interface ButtonProps {
 
 const Button = (props: ButtonProps) => {
   const { bgColor, text, onClick } = props
+
   return (
     <>
       <button className={`${bgColor} mr-4 rounded px-4 font-main`} onClick={onClick}>
@@ -18,4 +21,4 @@ const Button = (props: ButtonProps) => {
   )
 }
 
-export default Button
+export default memo(Button)

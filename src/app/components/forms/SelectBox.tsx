@@ -1,14 +1,16 @@
+import { memo } from 'react'
 import { LangType } from '@/app/types/app'
 
 interface SelectBoxProps {
   defaultValue: LangType
   id: string
-  options: string[]
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 const SelectBox = (props: SelectBoxProps) => {
-  const { defaultValue, id, options, onChange } = props
+  const { defaultValue, id, onChange } = props
+  const options = ['Ruby', 'JavaScript', 'Python', 'Php']
+  // console.log('Rendering Select!!!')
 
   return (
     <>
@@ -28,4 +30,4 @@ const SelectBox = (props: SelectBoxProps) => {
   )
 }
 
-export default SelectBox
+export default memo(SelectBox)
