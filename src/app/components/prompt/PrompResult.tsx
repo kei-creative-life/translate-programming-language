@@ -3,14 +3,17 @@ import { outputLang, setOutputLanguageReducer } from '../../redux/features/Langu
 import { LangType } from '@/app/types/app'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import SelectBox from '../forms/SelectBox'
+import Label from '../forms/Label'
 
 export default function PromptResult({ promptResponse }: any) {
   const dispatch = useDispatch()
 
   // Handle Input Language
+  const langOptions = ['Python', 'JavaScript', 'Ruby', 'Php']
   const outputLanguage = useSelector(outputLang)
-  const setOutputLanguage = (outputLangValue: string): void => {
-    dispatch(setOutputLanguageReducer(outputLangValue))
+  const setOutputLanguage = (langType: LangType): void => {
+    dispatch(setOutputLanguageReducer(langType))
   }
 
   const convertLangCode = () => {
@@ -28,26 +31,12 @@ export default function PromptResult({ promptResponse }: any) {
     }
   }
 
-  const langOptions = ['Python', 'JavaScript', 'Ruby', 'Php']
-
   return (
     <div className='w-full md:w-1/2'>
       <div className='mb-4 pr-4'>
         <div className='mb-4'>
-          <label htmlFor='output' className='mb-2 block font-main text-xl font-medium text-gray-900 dark:text-white'>
-            Translate To{' '}
-          </label>
-          <select
-            id='output'
-            onChange={(e) => setOutputLanguage(e.target.value as LangType)}
-            className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
-          >
-            {langOptions.map((langOption) => (
-              <option key={langOption} value={langOption}>
-                {langOption}
-              </option>
-            ))}
-          </select>
+          <Label text='Translate to' />
+          <SelectBox defaultValue='Python' id='output' options={langOptions} onChange={(e) => setOutputLanguage(e.target.value as LangType)} />
         </div>
       </div>
       <div className='flex h-96 rounded-r-lg text-center dark:bg-gray-700'>

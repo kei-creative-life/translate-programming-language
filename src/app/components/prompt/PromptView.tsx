@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { inputLang, setInputLanguageReducer } from '@/app/redux/features/LanguageSlice'
 import { getPrompt, updatePromptReducer, clearPromptReducer } from '@/app/redux/features/PromptSlice'
 import { LangType } from '@/app/types/app'
+import SelectBox from '@/app/components/forms/SelectBox'
+import Button from '@/app/components/forms/Button'
+import Label from '../forms/Label'
 
 interface PromptViewProps {
   onSubmitClicked: () => Promise<void>
@@ -12,12 +15,11 @@ export default function PromptView(props: PromptViewProps) {
   const dispatch = useDispatch()
 
   // Handle Input Language
-  const inputLanguage = useSelector(inputLang)
-  const setInputLanguage = (inputLangValue: LangType): void => {
-    dispatch(setInputLanguageReducer(inputLangValue))
-  }
-
   const langOptions = ['Ruby', 'JavaScript', 'Python', 'Php']
+  const inputLanguage = useSelector(inputLang)
+  const setInputLanguage = (langType: LangType): void => {
+    dispatch(setInputLanguageReducer(langType))
+  }
 
   // Handle Prompt
   const prompt = useSelector(getPrompt)
@@ -48,20 +50,8 @@ export default function PromptView(props: PromptViewProps) {
     <div className='mb-8 w-full md:mb-0 md:w-1/2'>
       <div className='mb-4 pr-4'>
         <div className='mb-4'>
-          <label htmlFor='input' className='mb-2 block font-main text-xl font-medium text-gray-900 dark:text-white'>
-            Translate from{' '}
-          </label>
-          <select
-            id='input'
-            onChange={(e) => setInputLanguage(e.target.value as LangType)}
-            className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
-          >
-            {langOptions.map((langOption) => (
-              <option key={langOption} value={langOption}>
-                {langOption}
-              </option>
-            ))}
-          </select>
+          <Label text='Translate from' />
+          <SelectBox defaultValue='Ruby' id='input' options={langOptions} onChange={(e) => setInputLanguage(e.target.value as LangType)} />
         </div>
       </div>
       <textarea
@@ -72,12 +62,8 @@ export default function PromptView(props: PromptViewProps) {
         style={{ fontFamily: '"Consolas,Monaco","Andale Mono","monospace"' }}
         className='resize-vertical scrollbar-track-gray-white scrollbar-rounded-lg h-96 w-full overflow-y-auto rounded-l-lg border bg-white p-4 text-lg text-gray-600 scrollbar scrollbar-thumb-white focus:outline-0 dark:border-gray-600 dark:bg-gray-900 md:text-lg'
       ></textarea>
-      <button className='mr-4 rounded bg-sub-blue px-4 font-main dark:bg-blue-900' onClick={onSubmitClicked}>
-        Translate
-      </button>
-      <button className='mr-4 rounded bg-red-600 px-4 font-main dark:bg-red-900' onClick={clearPrompt}>
-        Clear
-      </button>
+      <Button bgColor='bg-sub-blue dark:bg-blue-900' text='Translate' onClick={onSubmitClicked} />
+      <Button bgColor='bg-red-600 dark:bg-red-900' text='Clear' onClick={clearPrompt} />
     </div>
   )
 }
