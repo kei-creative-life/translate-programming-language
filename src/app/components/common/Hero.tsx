@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Link as Scroll } from 'react-scroll'
 
-export function Hero() {
+const Hero = () => {
   const languages = ['ruby', 'javascript', 'python', 'php']
 
   return (
@@ -34,3 +34,5 @@ export function Hero() {
     </section>
   )
 }
+
+export default Hero

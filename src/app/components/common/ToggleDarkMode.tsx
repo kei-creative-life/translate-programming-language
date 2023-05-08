@@ -1,7 +1,7 @@
 'use client'
 
 import { BsFillMoonStarsFill, BsSunFill } from 'react-icons/bs'
-import { useToggleDarkMode } from '../utils/useToggleDarkMode'
+import { useToggleDarkMode } from '../../utils/useToggleDarkMode'
 
 export function ToggleDarkMode() {
   const { isDarkMode, toggle } = useToggleDarkMode()

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import PromptResult from './components/prompt/PrompResult'
 import PromptView from './components/prompt/PromptView'
-import Overlay from './components/Overlay'
-import { Hero } from './components/Hero'
+import Overlay from './components/common/Overlay'
+import Hero from './components/common/Hero'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -14,7 +14,6 @@ export default function Home() {
       <div className='flex flex-col'>
         {/* <Overlay isLoading={isLoading} setIsLoading={setIsLoading} promptError={promptError} /> */}
         <Overlay isLoading={isLoading} setIsLoading={setIsLoading} promptError='invalid_request_error' />
-
         <Hero />
         <div className='-mt-20 md:-mt-32'>
           <div className='mx-auto mb-8 w-3/4 rounded-lg bg-white p-8 dark:bg-gray-500'>

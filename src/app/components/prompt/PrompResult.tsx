@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { outputLang, setOutputLanguageReducer } from '../../redux/features/LanguageSlice'
 import { LangType } from '@/app/types/app'
@@ -6,7 +7,7 @@ import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import SelectBox from '../forms/SelectBox'
 import Label from '../forms/Label'
 
-export default function PromptResult({ promptResponse }: any) {
+const PromptResult = ({ promptResponse }: any) => {
   const dispatch = useDispatch()
 
   // Handle Input Language
@@ -52,3 +53,5 @@ export default function PromptResult({ promptResponse }: any) {
     </div>
   )
 }
+
+export default memo(PromptResult)
